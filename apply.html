@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply Now — King James Schools</title>
+  <meta name="description" content="Begin your child's application to King James Schools. Applications are open for the next academic session." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="site-header is-solid-page" id="navbar">
+    <div class="top-bar">
+      <div class="top-bar-inner container">
+        <div class="top-bar-contact">
+          <a href="tel:+2348000000000">+234 800 000 0000</a>
+          <a href="mailto:admissions@kingjames.sch.ng">admissions@kingjames.sch.ng</a>
+        </div>
+        <p class="top-bar-note">Admissions in progress for the 2026/27 academic session</p>
+      </div>
+    </div>
+    <div class="nav-inner">
+      <a class="brand" href="index.html" aria-label="King James Schools — home">
+        <span class="brand-mark" aria-hidden="true">KJ</span>
+        <span class="brand-text">
+          <span class="brand-name">King James</span>
+          <span class="brand-sub">Schools</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="index.html#about">About</a>
+        <a href="index.html#academics">Academics</a>
+        <a href="index.html#admissions">Admissions</a>
+        <a href="index.html#student-life">Student Life</a>
+        <a href="index.html#campuses">Campuses</a>
+        <a href="index.html#news">News &amp; Events</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="nav-ctas">
+        <a class="btn btn-outline btn-sm nav-cta-visit" href="index.html#visit">Book a Visit</a>
+        <a class="btn btn-primary btn-sm magnetic" href="apply.html" aria-current="page">Apply Now</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="kicker label-upper">Admissions</p>
+        <h1 class="headline-1 display-serif">Start their<br>application.</h1>
+        <p class="page-hero-sub body-text">Complete the form below and our admissions team will be in touch within two working days.</p>
+      </div>
+      <span class="deco deco-1" aria-hidden="true"></span>
+    </section>
+
+    <!-- ============ APPLICATION FORM ============ -->
+    <section class="apply-section section">
+      <div class="container apply-grid">
+        <aside class="apply-aside">
+          <h2 class="headline-5 display-serif">Before you begin</h2>
+          <ul class="apply-checklist">
+            <li>Applications are open for the 2027/28 academic session.</li>
+            <li>There is no application fee at this stage.</li>
+            <li>Entrance assessments hold every Saturday morning.</li>
+            <li>You can save your progress and continue later — our team will follow up.</li>
+          </ul>
+          <div class="apply-help glass">
+            <p class="label-upper">Need help?</p>
+            <p class="body-text">Call <a href="tel:+2348000000000">+234 800 000 0000</a> or email <a href="mailto:admissions@kingjames.sch.ng">admissions@kingjames.sch.ng</a></p>
+          </div>
+        </aside>
+
+        <div class="apply-form-wrap">
+          <form id="apply-form" novalidate>
+            <fieldset class="form-fieldset">
+              <legend class="label-upper">Parent / Guardian</legend>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="pg-name">Full name <span class="req" aria-hidden="true">*</span></label>
+                  <input id="pg-name" name="pg-name" type="text" autocomplete="name" required aria-describedby="pg-name-error"
+                         data-validate="required" data-required-error="Please enter your full name." />
+                  <p class="field-error" id="pg-name-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="pg-phone">Phone number <span class="req" aria-hidden="true">*</span></label>
+                  <input id="pg-phone" name="pg-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+234 ..." required aria-describedby="pg-phone-error"
+                         data-validate="required phone"
+                         data-required-error="Please enter a phone number."
+                         data-phone-error="Please enter a valid phone number." />
+                  <p class="field-error" id="pg-phone-error" aria-live="polite"></p>
+                </div>
+                <div class="field field-span">
+                  <label for="pg-email">Email address <span class="req" aria-hidden="true">*</span></label>
+                  <input id="pg-email" name="pg-email" type="email" autocomplete="email" required aria-describedby="pg-email-error"
+                         data-validate="required email"
+                         data-required-error="Please enter your email address."
+                         data-email-error="Please enter a valid email address." />
+                  <p class="field-error" id="pg-email-error" aria-live="polite"></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-fieldset">
+              <legend class="label-upper">Student</legend>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="st-first">First name <span class="req" aria-hidden="true">*</span></label>
+                  <input id="st-first" name="st-first" type="text" autocomplete="given-name" required aria-describedby="st-first-error"
+                         data-validate="required" data-required-error="Please enter the student's first name." />
+                  <p class="field-error" id="st-first-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="st-last">Last name <span class="req" aria-hidden="true">*</span></label>
+                  <input id="st-last" name="st-last" type="text" autocomplete="family-name" required aria-describedby="st-last-error"
+                         data-validate="required" data-required-error="Please enter the student's last name." />
+                  <p class="field-error" id="st-last-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="st-dob">Date of birth <span class="req" aria-hidden="true">*</span></label>
+                  <input id="st-dob" name="st-dob" type="date" required aria-describedby="st-dob-error"
+                         data-validate="required" data-required-error="Please enter the student's date of birth." />
+                  <p class="field-error" id="st-dob-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="st-gender">Gender</label>
+                  <select id="st-gender" name="st-gender">
+                    <option value="">Prefer not to say</option>
+                    <option>Female</option>
+                    <option>Male</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="st-division">Entry division <span class="req" aria-hidden="true">*</span></label>
+                  <select id="st-division" name="st-division" required aria-describedby="st-division-error"
+                          data-validate="required" data-required-error="Please choose an entry division.">
+                    <option value="">Select a division…</option>
+                    <option>Early Years</option>
+                    <option>Primary</option>
+                    <option>Secondary</option>
+                    <option>Sixth Form</option>
+                  </select>
+                  <p class="field-error" id="st-division-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="st-campus">Preferred campus <span class="req" aria-hidden="true">*</span></label>
+                  <select id="st-campus" name="st-campus" required aria-describedby="st-campus-error"
+                          data-validate="required" data-required-error="Please choose a campus.">
+                    <option value="">Select a campus…</option>
+                    <option>Ikeja</option>
+                    <option>Victoria Island</option>
+                    <option>Lekki</option>
+                  </select>
+                  <p class="field-error" id="st-campus-error" aria-live="polite"></p>
+                </div>
+                <div class="field field-span">
+                  <label for="st-school">Current / previous school <span class="caption">(optional)</span></label>
+                  <input id="st-school" name="st-school" type="text" autocomplete="off" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-fieldset">
+              <legend class="label-upper">Anything else?</legend>
+              <div class="field">
+                <label for="msg">Message <span class="caption">(optional)</span></label>
+                <textarea id="msg" name="msg" rows="5" placeholder="Tell us about your child, or ask us anything…"></textarea>
+              </div>
+              <div class="field field-check">
+                <input id="consent" name="consent" type="checkbox" required aria-describedby="consent-error"
+                       data-validate="checked"
+                       data-checked-error="Please agree before submitting." />
+                <label for="consent">I agree that King James Schools may contact me about this application. <span class="req" aria-hidden="true">*</span></label>
+                <p class="field-error" id="consent-error" aria-live="polite"></p>
+              </div>
+            </fieldset>
+
+            <button class="btn btn-primary btn-lg magnetic" type="submit">Submit Application <span class="arrow" aria-hidden="true">→</span></button>
+            <p class="caption form-note">This demo form does not send data anywhere — connect it to your admissions inbox or CRM to go live.</p>
+          </form>
+
+          <div class="form-success" id="apply-success" hidden>
+            <span class="success-mark" aria-hidden="true">✓</span>
+            <h2 class="headline-3 display-serif">Application received.</h2>
+            <p class="body-text">Thank you — our admissions team will contact you within two working days to confirm entrance assessment details.</p>
+            <a class="btn btn-outline" href="index.html">Back to homepage</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid footer-grid-compact">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="King James Schools — home">
+            <span class="brand-mark" aria-hidden="true">KJ</span>
+            <span class="brand-text">
+              <span class="brand-name">King James</span>
+              <span class="brand-sub">Schools</span>
+            </span>
+          </a>
+          <p class="caption">A premium Nigerian private school helping young minds discover their potential since 1994.</p>
+        </div>
+        <div class="footer-col" aria-label="Footer — contact">
+          <h3 class="label-upper">Contact</h3>
+          <a href="tel:+2348000000000">+234 800 000 0000</a>
+          <a href="mailto:admissions@kingjames.sch.ng">admissions@kingjames.sch.ng</a>
+          <span>Obafemi Awolowo Way,<br>Ikeja, Lagos, Nigeria</span>
+        </div>
+      </div>
+      <div class="footer-bottom caption">
+        <span>© <span id="year">2026</span> King James Schools. All rights reserved.</span>
+        <span class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>
