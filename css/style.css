@@ -110,6 +110,22 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   gap: 2rem;
   flex-wrap: wrap;
 }
+/* Emerald-style centered header variant */
+.section-head.is-centered {
+  margin-inline: auto;
+  text-align: center;
+  max-width: 780px;
+}
+.section-head.is-centered .kicker { padding-left: 0; }
+.section-head.is-centered .kicker::before { display: none; }
+.section-head.is-centered .kicker::after {
+  content: '';
+  display: block;
+  width: 3.2rem;
+  height: 2px;
+  margin: 0.9rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--king-gold), transparent);
+}
 
 /* Focus visibility (accessibility) */
 :focus-visible { outline: 2px solid var(--king-gold); outline-offset: 3px; border-radius: 2px; }
@@ -589,11 +605,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .about-links { margin-top: 2rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
 
 .about-media { position: relative; padding-bottom: 3rem; padding-right: 2.5rem; }
-.media-frame { overflow: hidden; border-radius: 24px; box-shadow: var(--shadow-card); }
+.media-frame { overflow: hidden; border-radius: 28px; box-shadow: var(--shadow-card); }
 .media-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
 .media-frame:hover img { transform: scale(1.03); }
 
-.arch-mask { border-radius: 200px 200px 24px 24px; }
+.arch-mask { border-radius: 220px 220px 28px 28px; }
 
 .about-media-inset {
   position: absolute;
@@ -635,7 +651,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   text-align: center;
 }
 .number {
-  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   color: var(--king-gold);
   line-height: 1;
   display: block;
@@ -673,9 +689,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 .bento-card {
   position: relative;
-  border-radius: 22px;
+  border-radius: 26px;
   overflow: hidden;
   background: var(--white);
+  border: 1px solid rgba(26, 32, 44, 0.06);
   box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
@@ -824,7 +841,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 24px;
   box-shadow: var(--shadow-card);
   transition: transform 0.7s var(--ease-out), box-shadow 0.7s;
 }
@@ -849,8 +866,9 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .news-card {
   position: relative;
   background: var(--white);
-  border-radius: 22px;
+  border-radius: 26px;
   overflow: hidden;
+  border: 1px solid rgba(26, 32, 44, 0.06);
   box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;

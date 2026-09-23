@@ -421,10 +421,32 @@ Site must remain highly usable for parents quickly finding:
 
 ```
 /index.html          # Full website structure
+/apply.html          # Admissions application form
 /css/style.css       # Comprehensive stylesheet (premium design system)
-/js/script.js        # Interactions (story hero, parallax, reveals, mobile menu)
-/images/             # Hero photography, campus images, icons
+/js/script.js        # Interactions (hero slider, reveals, tabs, form validation)
+/images/             # Placeholder imagery, organized by section
 ```
+
+### Image folder layout
+
+```
+images/
+├── hero/           # Hero slider images (campus, learning, primary, secondary,
+│                   #   sixth-form, admissions, sports, culture)
+├── about/          # About section (main, architecture)
+├── academics/      # Academics tabs + news science fair (early-years, classroom,
+│                   #   science-lab, sixth-form, science-fair)
+├── facilities/     # Campus buildings (campus-ikeja, campus-victoria, campus-lekki)
+├── sports/         # Sports (football, interhouse)
+├── activities/     # Clubs & arts (art-class, clubs, arts-festival)
+├── staff/          # Staff portraits (empty — add staff photos here)
+├── students/       # Parent/student portraits (parent-1, parent-2, parent-3)
+├── gallery/        # Student-life strip (classrooms, sports, science, arts,
+│                   #   culture, events, friends, campus)
+└── admissions/     # Admissions imagery (empty — add photos here)
+```
+
+To swap in real photography: drop your image over the placeholder file using the **same name** (e.g. replace `images/hero/campus.svg` with a JPG and update the extension in `index.html`), or keep names identical with `.jpg`/`.webp` and adjust references. All current files are labeled placeholder illustrations.
 
 ## Customization Guide
 
@@ -451,8 +473,8 @@ Site must remain highly usable for parents quickly finding:
 4. Ensure responsive grid columns display correctly
 
 ### To Replace Photography
-1. Place new images in `/images/` folder
-2. Update image paths in index.html
+1. Place real images in the matching `images/<section>/` folder (see layout above)
+2. Update image paths in index.html if the filename or extension changes
 3. Optimize images for web (compress while maintaining quality)
 4. Add descriptive alt text for accessibility
 

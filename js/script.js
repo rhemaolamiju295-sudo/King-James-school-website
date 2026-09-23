@@ -54,175 +54,153 @@
   onScrollNav();
 
   /* =======================================================
-     3. STORY HERO
+     3. HERO — DIVISION SHOWCASE SLIDER
      ======================================================= */
   const hero = document.querySelector('.hero');
-  if (hero && !prefersReducedMotion) {
-    const slides = Array.from(hero.querySelectorAll('[data-story]'));
-    const segs = Array.from(hero.querySelectorAll('.progress-seg'));
-    const statusIndex = document.querySelector('#hero-status .status-index');
-    const statusLabel = document.querySelector('#hero-status .status-label');
-    const STORY_MS = 7000;
+  if (hero) {
+    const slides = Array.from(hero.querySelectorAll('[data-slide]'));
+    const dots = Array.from(hero.querySelectorAll('.hero-dot'));
+    const fills = dots.map((d) => d.querySelector('.dot-fill'));
+    const SLIDE_MS = 7500;
+    const FADE_MS = 950;
     let current = 0;
-    let elapsed = 0;
-    let rafId = null;
-    let lastTick = null;
+    let autoTimer = null;
     let paused = false;
-    const fills = segs.map((s) => s.querySelector('.progress-fill'));
-    let activeTimer = null;
+    const cleanupTimers = new Map();
 
-    const pad = (n) => String(n + 1).padStart(2, '0');
-
-    const render = () => {
-      slides.forEach((slide, i) => {
-        const active = i === current;
-        const leaving = slide.classList.contains('is-leaving');
-        if (active && slide.hidden) {
-          slide.hidden = false;
-          slide.classList.add('is-active');
-        } else if (!active && !leaving && !slide.hidden) {
-          slide.hidden = true;
-          slide.classList.remove('is-active');
-        }
+    // Active dot's fill sweeps from 0 → 100% over the slide duration.
+    // While paused the sweep is held, so resume() can continue it.
+    const startProgress = () => {
+      fills.forEach((fill, i) => {
+        if (!fill) return;
+        fill.style.transition = 'none';
+        fill.style.width = i < current ? '100%' : '0%';
       });
-      segs.forEach((seg, i) => {
-        seg.setAttribute('aria-selected', String(i === current));
-        seg.classList.toggle('is-done', i < current);
-        if (i < current) fills[i].style.width = '100%';
-        else if (i > current) fills[i].style.width = '0%';
-      });
-      if (statusIndex) statusIndex.textContent = pad(current);
-      if (statusLabel) statusLabel.textContent = slides[current].dataset.label || '';
+      const active = fills[current];
+      if (!active || paused || prefersReducedMotion) return;
+      void active.offsetWidth; // flush styles so the transition runs
+      active.style.transition = `width ${SLIDE_MS}ms linear`;
+      active.style.width = '100%';
     };
 
-    const tick = (now) => {
-      if (!paused) {
-        if (lastTick == null) lastTick = now;
-        elapsed += now - lastTick;
-        const pct = Math.min(100, (elapsed / STORY_MS) * 100);
-        fills[current].style.width = pct + '%';
-        if (elapsed >= STORY_MS) {
-          goTo((current + 1) % slides.length);
-        }
-      }
-      lastTick = now;
-      rafId = requestAnimationFrame(tick);
+    const restartAutoplay = () => {
+      clearTimeout(autoTimer);
+      if (prefersReducedMotion || paused || slides.length < 2) return;
+      autoTimer = setTimeout(() => goTo(current + 1), SLIDE_MS);
     };
 
     const goTo = (index) => {
-      if (index === current) return;
+      const nextIndex = (index + slides.length) % slides.length;
+      if (nextIndex === current) return;
       const prevSlide = slides[current];
-      const nextSlide = slides[index];
+      const nextSlide = slides[nextIndex];
 
-      // Animate the old slide out, then hide it
+      // Animate the previous slide out, then hide it
+      clearTimeout(cleanupTimers.get(prevSlide));
       prevSlide.classList.remove('is-active');
       prevSlide.classList.add('is-leaving');
-      fills[current].style.width = '0%';
-      setTimeout(() => {
+      cleanupTimers.set(prevSlide, setTimeout(() => {
         prevSlide.classList.remove('is-leaving');
         prevSlide.hidden = true;
-      }, 900);
+      }, FADE_MS));
 
-      current = index;
-      elapsed = 0;
-      lastTick = null;
+      // Reveal the incoming slide
+      clearTimeout(cleanupTimers.get(nextSlide));
       nextSlide.hidden = false;
+      nextSlide.classList.remove('is-leaving');
       nextSlide.classList.add('is-active');
-      // Clear the entrance animation after it finishes so inline transforms
-      // (parallax / scroll drift) are not overridden by fill-mode forwards.
-      clearTimeout(activeTimer);
-      activeTimer = setTimeout(() => nextSlide.classList.remove('is-active'), 1400);
-      render();
+      current = nextIndex;
+
+      // Sync dots — done dots stay filled and dimmed, the active one sweeps
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-done', i < current);
+        dot.setAttribute('aria-selected', String(i === current));
+      });
+      startProgress();
+      restartAutoplay();
     };
 
-    // Controls
-    const next = () => goTo((current + 1) % slides.length);
-    const prev = () => goTo((current - 1 + slides.length) % slides.length);
+    const next = () => goTo(current + 1);
+    const prev = () => goTo(current - 1);
     hero.querySelector('#hero-next')?.addEventListener('click', next);
     hero.querySelector('#hero-prev')?.addEventListener('click', prev);
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-    segs.forEach((seg, i) => seg.addEventListener('click', () => goTo(i)));
+    // Pause on hover over the controls — freezes the sweep mid-way
+    const pause = () => {
+      if (prefersReducedMotion || paused) return;
+      paused = true;
+      clearTimeout(autoTimer);
+      const fill = fills[current];
+      if (!fill) return;
+      const frozen = getComputedStyle(fill).width;
+      fill.style.transition = 'none';
+      fill.style.width = frozen;
+    };
+    const resume = () => {
+      if (prefersReducedMotion || !paused) return;
+      paused = false;
+      const fill = fills[current];
+      const track = fill?.parentElement;
+      if (!fill || !track) { restartAutoplay(); return; }
+      const trackW = track.getBoundingClientRect().width || 64;
+      const done = (parseFloat(getComputedStyle(fill).width) || 0) / trackW;
+      const remaining = Math.max(500, SLIDE_MS * (1 - done));
+      fill.style.transition = `width ${remaining}ms linear`;
+      fill.style.width = '100%';
+      autoTimer = setTimeout(() => goTo(current + 1), remaining);
+    };
+    const controls = hero.querySelector('.hero-controls');
+    if (controls && window.matchMedia('(pointer: fine)').matches) {
+      controls.addEventListener('mouseenter', pause);
+      controls.addEventListener('mouseleave', resume);
+    }
 
-    // Click zones (left = prev, right = next) — ignore clicks on links/buttons
-    hero.addEventListener('click', (e) => {
-      if (e.target.closest('a, button')) return;
-      const rect = hero.getBoundingClientRect();
-      (e.clientX - rect.left) > rect.width / 2 ? next() : prev();
-    });
-
-    // Pause on hover (desktop) / hold (touch)
-    const pause = () => { paused = true; };
-    const resume = () => { paused = false; lastTick = null; };
-    hero.addEventListener('mouseenter', pause);
-    hero.addEventListener('mouseleave', resume);
-
-    // Touch: press-and-hold pauses; a completed swipe navigates.
-    // Swipe detection is skipped when the movement is small so that a tap
-    // falls through to the click zones (tap left/right = prev/next).
-    let holdTimer = null;
+    // Touch: swipe left/right navigates (dots + arrows cover taps)
     let touchX = null;
     hero.addEventListener('touchstart', (e) => {
       touchX = e.touches[0].clientX;
-      holdTimer = setTimeout(pause, 350);
     }, { passive: true });
     const onTouchEnd = (e) => {
-      clearTimeout(holdTimer);
-      if (paused) setTimeout(resume, 800);
       if (touchX == null) return;
       const dx = e.changedTouches[0].clientX - touchX;
-      if (Math.abs(dx) > 48) {
-        (dx < 0 ? next : prev)();
-        paused = false; // a swipe is an explicit action — resume playback
-      }
       touchX = null;
+      if (Math.abs(dx) > 48) (dx < 0 ? next : prev)();
     };
     hero.addEventListener('touchend', onTouchEnd, { passive: true });
-    hero.addEventListener('touchcancel', onTouchEnd, { passive: true });
+    hero.addEventListener('touchcancel', () => { touchX = null; }, { passive: true });
 
-    // Pause the timer while the tab is hidden so returning users
-    // don't land several stories ahead.
+    // Don't advance while the tab is hidden so returning users
+    // don't land several slides ahead.
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) pause(); else resume();
     });
 
-    // Keyboard navigation — only when focus is inside the hero
+    // Keyboard navigation — arrow keys while focus is inside the hero
     hero.addEventListener('keydown', (e) => {
-      if (e.target.closest('input, textarea, a, button') && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      if (e.target.closest('input, textarea')) return;
       if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
       if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
     });
-    hero.tabIndex = -1;
 
-    // Cursor parallax (extremely subtle)
-    if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        slides.forEach((slide) => {
-          const media = slide.querySelector('.story-media');
-          if (!media) return;
-          const depth = parseFloat(getComputedStyle(media).getPropertyValue('--parallax')) || 0.3;
-          media.style.setProperty('--px', `${(-x * depth * 30).toFixed(2)}px`);
-          media.style.setProperty('--py', `${(-y * depth * 30).toFixed(2)}px`);
-        });
-      });
-    }
-
-    // Scroll transition: hero content drifts up, bg scales slightly
+    // Scroll transition: hero copy drifts up and fades out
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
       if (y > window.innerHeight) return;
-      hero.style.setProperty('--scroll-progress', String(y / window.innerHeight));
-      const copy = hero.querySelector('.story-copy');
-      const media = slides[current]?.querySelector('.story-media');
-      if (copy) copy.style.transform = `translateY(${y * 0.18}px)`;
-      if (copy) copy.style.opacity = String(Math.max(0, 1 - (y / (window.innerHeight * 0.7))));
-      if (media) media.style.filter = `brightness(${Math.max(0.75, 1 - y / 2500)})`;
+      const copy = hero.querySelector('.slide-content');
+      if (copy) {
+        copy.style.transform = `translateY(${y * 0.18}px)`;
+        copy.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.7)));
+      }
     }, { passive: true });
 
-    render();
-    rafId = requestAnimationFrame(tick);
+    // Init
+    slides.forEach((slide, i) => {
+      slide.hidden = i !== 0;
+      slide.classList.toggle('is-active', i === 0);
+    });
+    startProgress();
+    restartAutoplay();
   }
 
   /* =======================================================
@@ -315,7 +293,7 @@
   const tDots = Array.from(document.querySelectorAll('.t-dot'));
   const tSlides = Array.from(document.querySelectorAll('.t-slide'));
   const tImg = document.getElementById('t-img');
-  const tImages = ['images/parent-1.svg', 'images/parent-2.svg', 'images/parent-3.svg'];
+  const tImages = ['images/students/parent-1.svg', 'images/students/parent-2.svg', 'images/students/parent-3.svg'];
   let tIndex = 0;
   let tTimer = null;
 
@@ -391,7 +369,7 @@
      9. MAGNETIC BUTTONS (subtle)
      ======================================================= */
   if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('.magnetic').fhttps://emeraldschools.com/orEach((btn) => {
+    document.querySelectorAll('.magnetic').forEach((btn) => {
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
