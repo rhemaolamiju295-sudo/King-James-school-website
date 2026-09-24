@@ -435,7 +435,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 
 .hero-dots { display: flex; gap: 1.4rem; flex-wrap: wrap; }
-.hero-dot { display: grid; gap: 0.55rem; justify-items: start; padding: 0; }
+.hero-dot { display: grid; gap: 0.55rem; justify-items: start; padding: 8px; margin: -8px; }
 .dot-progress {
   display: block;
   width: 64px;
@@ -605,6 +605,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .qa-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
 .qa-kicker { color: var(--king-gold); }
 .qa-title { font-size: 1.4rem; }
+h2.qa-title { font-size: 1.3rem; }
 
 /* =========================================================
    ABOUT — More Than Education
@@ -945,13 +946,25 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .t-slide footer { margin-top: 1.5rem; }
 .t-dots { display: flex; gap: 0.6rem; margin-top: 2rem; }
 .t-dot {
+  /* padded hit area (44px) with the visual dot drawn on ::before */
+  position: relative;
+  width: 44px; height: 44px;
+  margin: -17px;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0;
+}
+.t-dot::before {
+  content: "";
+  position: absolute;
+  inset: 50%;
   width: 10px; height: 10px;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   background: rgba(45, 55, 72, 0.2);
   transition: background 0.3s, transform 0.3s;
-  padding: 0;
 }
-.t-dot.is-active { background: var(--king-gold); transform: scale(1.25); }
+.t-dot.is-active::before { background: var(--king-gold); transform: translate(-50%, -50%) scale(1.25); }
 
 .t-media-col { position: relative; }
 .t-media { aspect-ratio: 4 / 5; }
