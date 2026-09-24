@@ -821,7 +821,8 @@ h2.qa-title { font-size: 1.3rem; }
   border-color: var(--royal-blue);
   box-shadow: 0 10px 26px rgba(45, 55, 72, 0.28);
 }
-.campus-num { font-family: var(--font-serif); color: var(--king-gold-ink); font-size: 1.05rem; }
+.campus-tab .campus-num { font-family: var(--font-serif); color: var(--king-gold-ink); font-size: 1.05rem; }
+.campus-tab.is-active .campus-num { color: var(--king-gold); }
 
 .campus-panels { position: relative; }
 .campus-panel {
