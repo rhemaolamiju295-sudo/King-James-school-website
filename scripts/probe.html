@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Probe</title></head>
+<body>
+<iframe id="f" src="https://rhemaolamiju295-sudo.github.io/King-James-school-website/" width="1300" height="850"></iframe>
+<pre id="out">probing...</pre>
+<script>
+function report() {
+  const d = document.getElementById('f').contentDocument;
+  if (!d || !d.querySelector('.slide')) { setTimeout(report, 500); return; }
+  const out = [];
+  const active = d.querySelector('.slide.is-active');
+  const bg = active && active.querySelector('.slide-bg');
+  const cs = bg && getComputedStyle(bg);
+  out.push('active slide found: ' + !!active);
+  out.push('bg element found: ' + !!bg);
+  if (cs) {
+    out.push('background-image: ' + cs.backgroundImage.slice(0, 120));
+    out.push('opacity: ' + cs.opacity);
+    out.push('visibility: ' + cs.visibility);
+    out.push('width x height: ' + bg.offsetWidth + ' x ' + bg.offsetHeight);
+    out.push('--slide-img var: ' + bg.style.getPropertyValue('--slide-img'));
+  }
+  const slideCs = active && getComputedStyle(active);
+  if (slideCs) out.push('slide opacity: ' + slideCs.opacity + ' visibility: ' + slideCs.visibility + ' z-index: ' + slideCs.zIndex);
+  const img = new d.defaultView.Image();
+  img.onload = () => out.push('webp decode test: OK (' + img.naturalWidth + 'px)');
+  img.onerror = () => out.push('webp decode test: FAILED');
+  img.src = 'images/hero/campus.webp';
+  setTimeout(() => { document.getElementById('out').textContent = out.join('\n'); }, 800);
+}
+setTimeout(report, 4000);
+</script>
+</body>
+</html>

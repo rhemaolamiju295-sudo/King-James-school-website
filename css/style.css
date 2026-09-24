@@ -317,7 +317,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .slide-bg {
   position: absolute;
   inset: 0;
-  background-image: var(--slide-img);
   background-size: cover;
   background-position: center;
   will-change: opacity, transform;
