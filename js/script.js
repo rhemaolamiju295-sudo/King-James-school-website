@@ -293,7 +293,7 @@
   const tDots = Array.from(document.querySelectorAll('.t-dot'));
   const tSlides = Array.from(document.querySelectorAll('.t-slide'));
   const tImg = document.getElementById('t-img');
-  const tImages = ['images/students/parent-1.svg', 'images/students/parent-2.svg', 'images/students/parent-3.svg'];
+  const tImages = ['images/students/parent-1.webp', 'images/students/parent-2.webp', 'images/students/parent-3.webp'];
   let tIndex = 0;
   let tTimer = null;
 

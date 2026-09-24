@@ -446,7 +446,7 @@ images/
 └── admissions/     # Admissions imagery (empty — add photos here)
 ```
 
-To swap in real photography: drop your image over the placeholder file using the **same name** (e.g. replace `images/hero/campus.svg` with a JPG and update the extension in `index.html`), or keep names identical with `.jpg`/`.webp` and adjust references. All current files are labeled placeholder illustrations.
+To swap in real photography: drop your image over the placeholder file using the **same name** (e.g. replace `images/hero/campus.webp` with a JPG and update the extension in `index.html`), or keep names identical with `.jpg`/`.webp` and adjust references. All current files are labeled placeholder illustrations.
 
 ## Customization Guide
 
