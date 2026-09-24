@@ -151,12 +151,12 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 1000;
-  transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s;
+  transition: background 0.4s, box-shadow 0.4s;
 }
 .site-header.scrolled {
   background: rgba(247, 250, 252, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 rgba(45, 55, 72, 0.08), 0 10px 30px rgba(26, 32, 44, 0.06);
 }
 .site-header.scrolled .brand-name,
@@ -168,8 +168,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 /* Inner pages: header starts solid (no transparent-over-hero state) */
 .site-header.is-solid-page {
   background: rgba(247, 250, 252, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 rgba(45, 55, 72, 0.08);
 }
 .site-header.is-solid-page .brand-name,
@@ -447,8 +447,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .dot-fill {
   display: block;
   height: 100%;
-  width: 0;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
   background: linear-gradient(90deg, var(--king-gold), var(--king-gold-light));
+  will-change: transform;
 }
 .dot-name {
   font-size: 0.62rem;
@@ -459,7 +462,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 .hero-dot:hover .dot-name { color: var(--white); }
 .hero-dot[aria-selected="true"] .dot-name { color: var(--king-gold); }
-.hero-dot.is-done .dot-fill { width: 100%; background: rgba(212, 168, 83, 0.45); }
+.hero-dot.is-done .dot-fill { transform: scaleX(1); background: rgba(212, 168, 83, 0.45); }
 
 .hero-arrows { display: flex; gap: 0.75rem; }
 .hero-arrow {
@@ -562,15 +565,15 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
    ========================================================= */
 .glass {
   background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow: var(--shadow-card);
 }
 .glass-gold {
   background: rgba(45, 55, 72, 0.72);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(212, 168, 83, 0.35);
 }
 
@@ -620,6 +623,16 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .media-frame { overflow: hidden; border-radius: 28px; box-shadow: var(--shadow-card); }
 .media-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
 .media-frame:hover img { transform: scale(1.03); }
+
+/* Ken Burns on scroll: images settle from a slight zoom as their frame reveals.
+   Uses animation (not transition) so it releases and never blocks hover zoom. */
+@keyframes kbIn {
+  from { transform: scale(1.09); }
+  to   { transform: scale(1); }
+}
+.reveal-media.is-visible img { animation: kbIn 1.8s var(--ease-out) backwards; }
+.bento-card.reveal.is-visible .bento-media img { animation: kbIn 1.8s var(--ease-out) backwards; }
+.h-card.reveal.is-visible img { animation: kbIn 1.8s var(--ease-out) backwards; }
 
 .arch-mask { border-radius: 220px 220px 28px 28px; }
 

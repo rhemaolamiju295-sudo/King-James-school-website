@@ -74,13 +74,13 @@
       fills.forEach((fill, i) => {
         if (!fill) return;
         fill.style.transition = 'none';
-        fill.style.width = i < current ? '100%' : '0%';
+        fill.style.transform = `scaleX(${i < current ? 1 : 0})`;
       });
       const active = fills[current];
       if (!active || paused || prefersReducedMotion) return;
       void active.offsetWidth; // flush styles so the transition runs
-      active.style.transition = `width ${SLIDE_MS}ms linear`;
-      active.style.width = '100%';
+      active.style.transition = `transform ${SLIDE_MS}ms linear`;
+      active.style.transform = 'scaleX(1)';
     };
 
     const restartAutoplay = () => {
@@ -138,21 +138,21 @@
       clearTimeout(autoTimer);
       const fill = fills[current];
       if (!fill) return;
-      const frozen = getComputedStyle(fill).width;
+      const m = getComputedStyle(fill).transform;
+      const scale = m && m.startsWith('matrix') ? parseFloat(m.slice(7)) || 0 : 0;
       fill.style.transition = 'none';
-      fill.style.width = frozen;
+      fill.style.transform = `scaleX(${scale})`;
     };
     const resume = () => {
       if (prefersReducedMotion || !paused) return;
       paused = false;
       const fill = fills[current];
-      const track = fill?.parentElement;
-      if (!fill || !track) { restartAutoplay(); return; }
-      const trackW = track.getBoundingClientRect().width || 64;
-      const done = (parseFloat(getComputedStyle(fill).width) || 0) / trackW;
+      if (!fill) { restartAutoplay(); return; }
+      const m = getComputedStyle(fill).transform;
+      const done = m && m.startsWith('matrix') ? parseFloat(m.slice(7)) || 0 : 0;
       const remaining = Math.max(500, SLIDE_MS * (1 - done));
-      fill.style.transition = `width ${remaining}ms linear`;
-      fill.style.width = '100%';
+      fill.style.transition = `transform ${remaining}ms linear`;
+      fill.style.transform = 'scaleX(1)';
       autoTimer = setTimeout(() => goTo(current + 1), remaining);
     };
     const controls = hero.querySelector('.hero-controls');
