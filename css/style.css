@@ -436,7 +436,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 
 .hero-dots { display: flex; gap: 1.4rem; flex-wrap: wrap; }
-.hero-dot { display: grid; gap: 0.55rem; justify-items: start; padding: 8px; margin: -8px; }
+.hero-dot { display: grid; gap: 0.55rem; justify-items: start; padding: 8px; }
 .dot-progress {
   display: block;
   width: 64px;
@@ -945,12 +945,11 @@ h2.qa-title { font-size: 1.3rem; }
 .t-slide.is-active { animation: panelIn 0.55s var(--ease-out); }
 .t-quote { font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.45; font-weight: 500; color: var(--royal-blue); }
 .t-slide footer { margin-top: 1.5rem; }
-.t-dots { display: flex; gap: 0.6rem; margin-top: 2rem; }
+.t-dots { display: flex; gap: 0.25rem; margin-left: -0.5rem; margin-top: 2rem; }
 .t-dot {
-  /* padded hit area (44px) with the visual dot drawn on ::before */
+  /* 44px hit area; the visual dot is drawn on ::before */
   position: relative;
   width: 44px; height: 44px;
-  margin: -17px;
   border-radius: 50%;
   background: transparent;
   padding: 0;
