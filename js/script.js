@@ -95,6 +95,11 @@
       const prevSlide = slides[current];
       const nextSlide = slides[nextIndex];
 
+      // Warm the incoming slide's photo so it's decoded before the crossfade
+      const nextBg = nextSlide.querySelector('.slide-bg');
+      const nextUrl = nextBg && nextBg.style.backgroundImage.match(/url\(["']?(.+?)["']?\)/);
+      if (nextUrl) { const im = new Image(); im.src = nextUrl[1]; }
+
       // Animate the previous slide out, then hide it
       clearTimeout(cleanupTimers.get(prevSlide));
       prevSlide.classList.remove('is-active');
@@ -199,6 +204,10 @@
       slide.hidden = i !== 0;
       slide.classList.toggle('is-active', i === 0);
     });
+    // Prefetch slide 2's photo early — most sessions advance to it first
+    const secondBg = slides[1] && slides[1].querySelector('.slide-bg');
+    const secondUrl = secondBg && secondBg.style.backgroundImage.match(/url\(["']?(.+?)["']?\)/);
+    if (secondUrl) { const im = new Image(); im.src = secondUrl[1]; }
     startProgress();
     restartAutoplay();
   }
