@@ -10,11 +10,12 @@
   --royal-blue-dark: #1a202c;
   --king-gold: #d4a853;
   --king-gold-light: #e8bc65;
+  --king-gold-ink: #8a6520;
   --warm-ivory: #f7fafc;
   --white: #ffffff;
   --text-primary: #2d3748;
   --text-secondary: #4a5568;
-  --text-muted: #718096;
+  --text-muted: #556070;
   --accent-blue: #4299e1;
 
   --font-serif: 'Playfair Display', 'Merriweather', Georgia, serif;
@@ -84,7 +85,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .label-upper { text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; font-weight: 600; }
 
 .kicker {
-  color: var(--king-gold);
+  color: var(--king-gold-ink);
   margin-bottom: 1rem;
   display: inline-block;
   position: relative;
@@ -603,7 +604,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
 }
 .qa-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
-.qa-kicker { color: var(--king-gold); }
+.qa-kicker { color: var(--king-gold-ink); }
 .qa-title { font-size: 1.4rem; }
 h2.qa-title { font-size: 1.3rem; }
 
@@ -820,7 +821,7 @@ h2.qa-title { font-size: 1.3rem; }
   border-color: var(--royal-blue);
   box-shadow: 0 10px 26px rgba(45, 55, 72, 0.28);
 }
-.campus-num { font-family: var(--font-serif); color: var(--king-gold); font-size: 1.05rem; }
+.campus-num { font-family: var(--font-serif); color: var(--king-gold-ink); font-size: 1.05rem; }
 
 .campus-panels { position: relative; }
 .campus-panel {
