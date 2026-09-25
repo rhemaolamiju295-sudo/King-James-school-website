@@ -215,7 +215,6 @@ When user begins scrolling:
   - Early Years
   - Primary
   - Secondary
-  - Sixth Form (or school's actual divisions)
 - Smooth shared-element transition when category selected
 - Image and supporting text change actively
 - Active category indicator moves smoothly
@@ -432,10 +431,10 @@ Site must remain highly usable for parents quickly finding:
 ```
 images/
 ├── hero/           # Hero slider images (campus, learning, primary, secondary,
-│                   #   sixth-form, admissions, sports, culture)
+│                   #   admissions, sports, culture)
 ├── about/          # About section (main, architecture)
 ├── academics/      # Academics tabs + news science fair (early-years, classroom,
-│                   #   science-lab, sixth-form, science-fair)
+│                   #   science-lab, science-fair)
 ├── facilities/     # Campus buildings (campus-ikeja, campus-victoria, campus-lekki)
 ├── sports/         # Sports (football, interhouse)
 ├── activities/     # Clubs & arts (art-class, clubs, arts-festival)

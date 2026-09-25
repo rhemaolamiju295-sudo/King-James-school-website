@@ -9,7 +9,6 @@ Photography used on this site. Replace any file in `images/` with the school's o
 Sourced via [Openverse](https://openverse.org). CC BY / BY-SA items require attribution as noted; CC0 / PDM do not.
 
 - `images/hero/learning.webp` — "Read Across America, Vicenza, Italy" by US Army, CC BY 2.0 (https://creativecommons.org/licenses/by/2.0/)
-- `images/hero/sixth-form.webp` — "Chemistry Lab" (CC BY-SA, via Openverse/flickr)
 - `images/hero/admissions.webp` — "University of Melbourne Chemistry School Building" (CC BY-SA, via Openverse/wikimedia)
 - `images/hero/culture.webp` — "School girls practice a traditional dance" (CC BY, via Openverse/flickr)
 - `images/about/architecture.webp` — "Brisbane Girls Grammar School, Gregory Terrace" (Public Domain Mark, via Openverse)
@@ -17,7 +16,6 @@ Sourced via [Openverse](https://openverse.org). CC BY / BY-SA items require attr
 - `images/academics/science-lab.webp` — "Middle School Science Bowl" (Public Domain, via Openverse/flickr)
 - `images/academics/science-fair.webp` — "Science fair exhibit butterflies" (CC BY-SA, via Openverse/flickr)
 - `images/academics/early-years.webp` — "Children Toys" by Birch Landing Home, CC0, via Openverse (no attribution required)
-- `images/academics/sixth-form.webp` — "University of the Fraser Valley photography" (CC BY, via Openverse/flickr)
 - `images/activities/art-class.webp` — "Children painting arts class" (CC0, via Openverse)
 - `images/activities/clubs.webp` — "Yakima High School Outdoor Club" (CC BY, via Openverse/flickr)
 - `images/sports/interhouse.webp` — "Race for Life!" (CC BY, via Openverse/flickr)
