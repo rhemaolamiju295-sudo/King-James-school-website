@@ -19,8 +19,7 @@ Sourced via [Openverse](https://openverse.org). CC BY / BY-SA items require attr
 - `images/activities/art-class.webp` — "Children painting arts class" (CC0, via Openverse)
 - `images/activities/clubs.webp` — "Yakima High School Outdoor Club" (CC BY, via Openverse/flickr)
 - `images/sports/interhouse.webp` — "Race for Life!" (CC BY, via Openverse/flickr)
-- `images/facilities/campus-ikeja.webp` — "Sandwell College, West Bromwich Campus" (CC BY-SA, via Openverse/flickr)
-- `images/facilities/campus-victoria.webp` — "Modern school buildings, Liphook" (CC BY-SA, via Openverse/geograph)
+- `images/facilities/campus-atan-ota.webp` — "Sandwell College, West Bromwich Campus" (CC BY-SA, via Openverse/flickr)
 
 ## Unsplash (Unsplash License — free for commercial use, no attribution required)
 
@@ -35,7 +34,6 @@ Downloaded from `https://images.unsplash.com/photo-<id>`:
 | `images/academics/early-years.webp` | `1503454537195-1dcabb73ffb9` |
 | `images/activities/arts-festival.webp` | `1460661419201-fd4cecdf8a8b` |
 | `images/sports/football.webp` | `1552667466-07770ae110d0` |
-| `images/facilities/campus-lekki.webp` | `1507842217343-583bb7270b66` |
 | `images/gallery/classrooms.webp` | `1580582932707-520aed937b7b` |
 | `images/gallery/sports.webp` | `1517649763962-0c623066013b` |
 | `images/gallery/science.webp` | `1532094349884-543bc11b234d` |

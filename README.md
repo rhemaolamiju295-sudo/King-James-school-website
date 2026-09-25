@@ -435,7 +435,7 @@ images/
 ├── about/          # About section (main, architecture)
 ├── academics/      # Academics tabs + news science fair (early-years, classroom,
 │                   #   science-lab, science-fair)
-├── facilities/     # Campus buildings (campus-ikeja, campus-victoria, campus-lekki)
+├── facilities/     # Campus buildings (campus-atan-ota)
 ├── sports/         # Sports (football, interhouse)
 ├── activities/     # Clubs & arts (art-class, clubs, arts-festival)
 ├── staff/          # Staff portraits (empty — add staff photos here)
