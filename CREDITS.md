@@ -18,6 +18,7 @@ Sourced via [Openverse](https://openverse.org). CC BY / BY-SA items require attr
 - `images/academics/classroom.webp` — "Student iPad classroom" (CC BY, via Openverse/flickr)
 - `images/academics/science-lab.webp` — "Middle School Science Bowl" (Public Domain, via Openverse/flickr)
 - `images/academics/science-fair.webp` — "Science fair exhibit butterflies" (CC BY-SA, via Openverse/flickr)
+- `images/academics/early-years.webp` — "Children Toys" by Birch Landing Home, CC0, via Openverse (no attribution required)
 - `images/academics/sixth-form.webp` — "University of the Fraser Valley photography" (CC BY, via Openverse/flickr)
 - `images/activities/art-class.webp` — "Children painting arts class" (CC0, via Openverse)
 - `images/activities/clubs.webp` — "Yakima High School Outdoor Club" (CC BY, via Openverse/flickr)
