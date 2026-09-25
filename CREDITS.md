@@ -9,8 +9,6 @@ Photography used on this site. Replace any file in `images/` with the school's o
 Sourced via [Openverse](https://openverse.org). CC BY / BY-SA items require attribution as noted; CC0 / PDM do not.
 
 - `images/hero/learning.webp` — "Read Across America, Vicenza, Italy" by US Army, CC BY 2.0 (https://creativecommons.org/licenses/by/2.0/)
-- `images/hero/primary.webp` — "Nyasidhi Primary facilities" by Moving Mountains Trust, CC BY 2.0 (https://creativecommons.org/licenses/by/2.0/)
-- `images/hero/secondary.webp` — "Education" (CC BY, via Openverse/flickr)
 - `images/hero/sixth-form.webp` — "Chemistry Lab" (CC BY-SA, via Openverse/flickr)
 - `images/hero/admissions.webp` — "University of Melbourne Chemistry School Building" (CC BY-SA, via Openverse/wikimedia)
 - `images/hero/culture.webp` — "School girls practice a traditional dance" (CC BY, via Openverse/flickr)
@@ -33,6 +31,8 @@ Downloaded from `https://images.unsplash.com/photo-<id>`:
 | File | Photo ID |
 |---|---|
 | `images/hero/sports.webp` | `1461896836934-ffe607ba8211` |
+| `images/hero/primary.webp` | `1577896851231-70ef18881754` |
+| `images/hero/secondary.webp` | `1523240795612-9a054b0db644` |
 | `images/about/main.webp` | `1509062522246-3755977927d7` |
 | `images/academics/early-years.webp` | `1503454537195-1dcabb73ffb9` |
 | `images/activities/arts-festival.webp` | `1460661419201-fd4cecdf8a8b` |
